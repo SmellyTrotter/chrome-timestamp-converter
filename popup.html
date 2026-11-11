@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间戳转换</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+    <h1>时间戳转换</h1>
+
+    <!-- 时间戳 → 日期 -->
+    <section class="card">
+      <h2>时间戳 → 日期</h2>
+      <label class="field">
+        <span>输入时间戳（自动识别 秒/毫秒）</span>
+        <textarea id="input" rows="2" placeholder="如 1761613193 或 1761613193000"></textarea>
+      </label>
+      <div class="row">
+        <label class="unit">
+          <span>单位</span>
+          <select id="unit">
+            <option value="auto">自动识别</option>
+            <option value="s">秒</option>
+            <option value="ms">毫秒</option>
+          </select>
+        </label>
+      </div>
+      <div id="output" class="output"><span class="muted">等待输入…</span></div>
+    </section>
+
+    <!-- 日期 → 时间戳 -->
+    <section class="card">
+      <h2>日期 → 时间戳</h2>
+      <div class="cal">
+        <div class="cal-head">
+          <button type="button" id="prevM" class="cal-nav">‹</button>
+          <span id="calTitle" class="cal-title">----年--月</span>
+          <button type="button" id="nextM" class="cal-nav">›</button>
+        </div>
+        <div class="cal-week">
+          <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+        </div>
+        <div id="calGrid" class="cal-grid"></div>
+      </div>
+      <div class="seg" id="pointSeg">
+        <button type="button" data-point="0" class="active">0点（当日开始）</button>
+        <button type="button" data-point="24">24点（次日 0 点）</button>
+      </div>
+      <div id="calCaption" class="cal-caption"></div>
+      <div id="dateOutput" class="output"></div>
+    </section>
+
+    <p class="tip">提示：在网页上选中时间戳文本，右键即可一键转换。</p>
+
+    <!-- 小螃蟹（悬浮于功能层之下，自由溜达，时不时探头） -->
+    <div id="crab" class="crab" title="小螃蟹">
+      <div class="crab-pop">
+      <div class="crab-inner">
+        <svg viewBox="0 0 48 44" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+          <!-- 腿 -->
+          <g fill="#ef7d57">
+            <rect x="10" y="31" width="3" height="4"/>
+            <rect x="14" y="34" width="3" height="4"/>
+            <rect x="35" y="31" width="3" height="4"/>
+            <rect x="31" y="34" width="3" height="4"/>
+          </g>
+          <!-- 眼柄 -->
+          <rect x="18" y="12" width="2" height="8" fill="#ef7d57"/>
+          <rect x="28" y="12" width="2" height="8" fill="#ef7d57"/>
+          <!-- 眼睛（会眨） -->
+          <g class="eyes">
+            <rect x="15" y="6" width="7" height="7" fill="#fff" stroke="#1a1c2c" stroke-width="1.5"/>
+            <rect x="26" y="6" width="7" height="7" fill="#fff" stroke="#1a1c2c" stroke-width="1.5"/>
+            <rect x="18" y="9" width="3" height="3" fill="#1a1c2c"/>
+            <rect x="29" y="9" width="3" height="3" fill="#1a1c2c"/>
+            <rect x="19" y="10" width="1" height="1" fill="#fff"/>
+            <rect x="30" y="10" width="1" height="1" fill="#fff"/>
+          </g>
+          <!-- 身体 -->
+          <rect x="12" y="20" width="24" height="16" fill="#ef7d57" stroke="#1a1c2c" stroke-width="2"/>
+          <rect x="12" y="28" width="24" height="8" fill="#d85a3a"/>
+          <!-- 腮红 -->
+          <rect x="14" y="24" width="3" height="2" fill="#f4a6c0"/>
+          <rect x="31" y="24" width="3" height="2" fill="#f4a6c0"/>
+          <!-- 嘴（微笑） -->
+          <rect x="20" y="26" width="8" height="2" fill="#1a1c2c"/>
+          <rect x="20" y="26" width="8" height="1" fill="#ef7d57"/>
+          <!-- 左钳 -->
+          <g class="claw claw-l">
+            <rect x="3" y="22" width="9" height="9" fill="#ef7d57" stroke="#1a1c2c" stroke-width="2"/>
+            <rect x="3" y="22" width="4" height="9" fill="#d85a3a"/>
+          </g>
+          <!-- 右钳（招手） -->
+          <g class="claw claw-r">
+            <rect x="36" y="22" width="9" height="9" fill="#ef7d57" stroke="#1a1c2c" stroke-width="2"/>
+            <rect x="41" y="22" width="4" height="9" fill="#d85a3a"/>
+          </g>
+          <!-- 闪光 -->
+          <g class="sparkle" fill="#ffcd75">
+            <rect x="44" y="6" width="2" height="2"/>
+            <rect x="43" y="7" width="4" height="1"/>
+            <rect x="44" y="5" width="2" height="4"/>
+          </g>
+        </svg>
+      </div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

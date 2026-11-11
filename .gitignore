@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+.AppleDouble
+._*
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*~
+
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+
+# 扩展打包产物与签名密钥（不要提交）
+*.zip
+*.crx
+*.pem
+
+# 日志与临时文件
+*.log
+*.tmp

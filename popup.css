@@ -1,0 +1,237 @@
+:root {
+  --bg: #1a1c2c;
+  --panel: #29366f;
+  --field: #11132a;
+  --ink: #f4f4f4;
+  --muted: #94b0c2;
+  --accent: #ffcd75;
+  --accent2: #a7f070;
+  --danger: #ef7d57;
+  --shadow: 4px 4px 0 #000;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Courier New", ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: var(--bg);
+  color: var(--ink);
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px);
+}
+
+.app {
+  position: relative;
+  width: 320px;
+  padding: 16px;
+}
+
+h1 {
+  position: relative;
+  z-index: 3;
+  font-size: 14px;
+  margin: 0 0 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-shadow: 2px 2px 0 #000;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  background: var(--panel);
+  border: 3px solid #000;
+  box-shadow: var(--shadow);
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+h2 {
+  font-size: 12px;
+  margin: 0 0 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent2);
+}
+
+.field { display: block; margin-bottom: 10px; }
+.field > span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+textarea#input,
+.unit select {
+  width: 100%;
+  padding: 8px;
+  border: 3px solid #000;
+  border-radius: 0;
+  background: var(--field);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,.45);
+}
+textarea#input:focus,
+.unit select:focus { outline: none; border-color: var(--accent); }
+
+.row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.unit { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); text-transform: uppercase; }
+
+.seg { display: flex; gap: 8px; margin-bottom: 8px; }
+.seg button {
+  flex: 1;
+  padding: 8px 6px;
+  border: 3px solid #000;
+  border-radius: 0;
+  background: #333c57;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 11px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #000;
+}
+.seg button:hover { background: #3e4a73; }
+.seg button:active { transform: translate(3px, 3px); box-shadow: 0 0 0 #000; }
+.seg button.active { background: var(--accent); color: #000; }
+
+/* ===== 自绘像素日历 ===== */
+.cal { margin-bottom: 10px; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.cal-nav {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #000;
+  background: #333c57;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #000;
+}
+.cal-nav:hover { background: #3e4a73; }
+.cal-nav:active { transform: translate(2px, 2px); box-shadow: 0 0 0 #000; }
+.cal-title { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 1px; }
+.cal-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 4px; }
+.cal-week span { text-align: center; font-size: 10px; color: var(--muted); text-transform: uppercase; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-cell {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  background: var(--field);
+  color: var(--ink);
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.cal-cell.out { color: #5b6480; }
+.cal-cell.today { border-color: var(--accent2); }
+.cal-cell:hover { background: #333c57; }
+.cal-cell.sel { background: var(--accent); color: #000; font-weight: 700; }
+.cal-caption { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+
+/* ===== 结果行（标签在上、数值在下，不换行）===== */
+.output { margin: 4px 0 2px; min-height: 24px; }
+.muted { color: var(--muted); font-size: 11px; }
+.err { color: var(--danger); font-size: 12px; }
+
+.line {
+  padding: 6px 9px;
+  margin-bottom: 6px;
+  background: var(--field);
+  border: 3px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  cursor: pointer;
+}
+.line:hover { border-color: var(--accent); }
+.line-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+.line .k { font-size: 10px; color: var(--muted); text-transform: uppercase; }
+.line .copy { font-size: 10px; color: var(--accent); text-transform: uppercase; }
+.line .v {
+  display: block;
+  font-size: 13px;
+  color: var(--accent2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.tip { font-size: 10px; color: var(--muted); margin: 4px 0 0; line-height: 1.6; text-transform: uppercase; }
+
+/* ===== 小螃蟹动画（置于功能层之下，只在边缘/缝隙探头）===== */
+.crab {
+  position: absolute;
+  top: 6px;
+  left: -60px;
+  width: 48px;
+  height: 44px;
+  z-index: 1;
+  opacity: 1;            /* 可见性交给内层 .crab-pop 的像素动画控制 */
+  pointer-events: none;
+  cursor: grab;
+}
+.crab.show { pointer-events: auto; }
+.crab:active { cursor: grabbing; }
+.crab svg { width: 100%; height: 100%; display: block; overflow: visible; image-rendering: pixelated; }
+
+/* 像素化浮现 / 消失：外层统一做块状缩放 + 透明度跳变 */
+.crab-pop {
+  transform: scale(0);
+  opacity: 0;
+  transform-origin: 50% 100%;
+}
+.crab.show .crab-pop {
+  animation: crabPopIn .5s steps(4) forwards;
+}
+.crab.pop-out .crab-pop {
+  animation: crabPopOut .4s steps(4) forwards;
+}
+@keyframes crabPopIn {
+  0%   { transform: scale(0);    opacity: 0; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+@keyframes crabPopOut {
+  0%   { transform: scale(1);    opacity: 1; }
+  100% { transform: scale(0);    opacity: 0; }
+}
+.crab-inner { animation: crabBob .6s steps(2) infinite; transform-origin: 50% 100%; }
+@keyframes crabBob {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+.eyes { transform-box: fill-box; transform-origin: 50% 50%; animation: crabBlink 4.5s infinite; }
+@keyframes crabBlink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  93%           { transform: scaleY(0.12); }
+  96%           { transform: scaleY(1); }
+}
+.claw { transform-box: fill-box; transform-origin: 50% 20%; }
+.claw-l { animation: crabWiggle .6s steps(2) infinite; }
+.claw-r { animation: crabWave .9s steps(3) infinite; }
+@keyframes crabWiggle {
+  0%   { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+@keyframes crabWave {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(-28deg); }
+  100% { transform: rotate(0deg); }
+}
+.sparkle { animation: crabTwinkle 1.6s steps(2) infinite; }
+@keyframes crabTwinkle {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.2; }
+  100% { opacity: 1; }
+}
