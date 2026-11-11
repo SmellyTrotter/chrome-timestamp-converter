@@ -16,8 +16,8 @@
 本项目未上架 Chrome 应用店，通过开发者模式加载：
 
 ```bash
-git clone <你的仓库地址>
-cd <仓库目录>
+git clone https://github.com/Lemongo/chrome-timestamp-converter.git
+cd chrome-timestamp-converter
 ```
 
 1. 打开 `chrome://extensions`
