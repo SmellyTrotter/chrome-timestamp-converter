@@ -8,8 +8,32 @@
 
 - **时间戳 → 日期**：输入秒级（10 位）或毫秒级（13 位）时间戳，自动识别单位，也可手动指定。输出 `YYYY年MM月DD日 HH:mm:ss.SSS`，同时给出秒级与毫秒级结果，点击结果行即可复制。
 - **日期 → 时间戳**：自绘像素日历选日期，再选「0 点（当日开始）」或「24 点（次日 0 点）」，按浏览器本地时区换算，输出对应时间戳。
-- **右键一键转换**：在网页上选中时间戳或日期文本 → 右键「转换为日期 / 时间戳」→ 页面原位弹出像素风结果浮层，点击复制，点击外部或 10 秒后自动消失。
+- **右键一键转换**：在网页上选中时间戳或日期文本 → 右键「转换时间戳」→ 页面原位弹出像素风结果浮层，点击复制，点击外部或 10 秒后自动消失。
 - **小螃蟹彩蛋**：三只造型不同的像素螃蟹轮流探头，可拖动，带像素化浮现 / 消失效果。
+
+## 效果预览
+
+### 弹窗：双向转换
+
+| 弹窗总览（含像素日历） | 时间戳 → 日期 |
+| :---: | :---: |
+| <img src="screenshots/01-popup-overview.png" width="270" alt="弹窗总览"> | <img src="screenshots/02-timestamp-to-date.png" width="270" alt="时间戳转日期"> |
+
+| 日期 → 时间戳 · 0 点 | 日期 → 时间戳 · 24 点 |
+| :---: | :---: |
+| <img src="screenshots/03-date-to-timestamp-0.png" width="270" alt="0 点结果"> | <img src="screenshots/04-date-to-timestamp-24.png" width="270" alt="24 点结果"> |
+
+24 点即次日 0 点，对应「当日结束」边界；点击任意结果行即可复制（右下图显示「已复制」）。
+
+### 右键：选中文本一键转换
+
+在网页上选中时间戳或日期文本后右键，菜单里出现「转换时间戳」：
+
+<img src="screenshots/05-context-menu.png" width="260" alt="右键菜单">
+
+点击后，像素风结果浮层直接出现在页面上，点结果行复制、点别处或 10 秒后自动关闭：
+
+<img src="screenshots/06-context-result.png" width="680" alt="页面结果浮层">
 
 ## 安装
 
@@ -54,6 +78,7 @@ timestamp-extension/
 ├── popup.js            # 转换逻辑、自绘日历、小螃蟹
 ├── background.js       # 右键菜单与页面内结果浮层
 ├── icons/              # 16 / 32 / 48 / 128 像素图标
+├── screenshots/        # README 效果预览截图
 ├── README.md
 ├── LICENSE
 └── .gitignore
@@ -63,7 +88,7 @@ timestamp-extension/
 
 | 权限 | 用途 |
 | --- | --- |
-| `contextMenus` | 创建「转换为日期 / 时间戳」右键菜单项 |
+| `contextMenus` | 创建「转换时间戳」右键菜单项 |
 | `scripting` | 在当前标签页注入结果浮层 |
 | `activeTab` | 用户点击菜单项时，临时获得当前页访问权 |
 | `clipboardWrite` | 支持点击结果行复制 |
