@@ -16,7 +16,7 @@
 本项目未上架 Chrome 应用店，通过开发者模式加载：
 
 ```bash
-git clone https://github.com/Lemongo/chrome-timestamp-converter.git
+git clone https://github.com/SmellyTrotter/chrome-timestamp-converter.git
 cd chrome-timestamp-converter
 ```
 
